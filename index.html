@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="text" id="myInput1" value="Hello World" />
+    <button class="myInputClicker" data-target="myInput1">Copy text</button>
+    <br /><br />
+    <input type="text" id="myInput2" value="Life is beautiful" />
+    <button class="myInputClicker" data-target="myInput2">Copy text</button>
+  </body>
+  <script>
+    const selectedElements = document.querySelectorAll(".myInputClicker");
+
+    selectedElements.forEach((element, index) => {
+      element.addEventListener("click", function () {
+        let idOfInputWithValueToBeCopied = element.getAttribute("data-target");
+        inputWithValueToBeCopied = document.querySelector(
+          "#" + idOfInputWithValueToBeCopied
+        );
+
+        inputWithValueToBeCopied.select();
+        inputWithValueToBeCopied.setSelectionRange(
+          0,
+          99999
+        ); /* For mobile devices */
+
+        /* Copy the text inside the text field */
+        navigator.clipboard.writeText(inputWithValueToBeCopied.value);
+
+        /* Alert the copied text */
+        alert("Text has been copied to clipboard");
+      });
+    });
+  </script>
+</html>
